@@ -83,6 +83,10 @@ with st.expander("维基百科搜索结果 👀", expanded=False):
         for item in st.session_state.translation_result["annotations"]:
             # 显示当前专业名词。
             st.markdown(f"**{item['term']}**")
+            # 显示原文片段和实际百科标题，便于逐项核对术语与释义。
+            if item.get("original") and item.get("title"):
+                # 保留百科实际名称，不将相关但不同的概念冒充为同一术语。
+                st.caption(f"原文术语：{item['original']} · 百科词条：{item['title']}")
             # 查询失败时使用警告框，避免把错误提示当成百科定义。
             if item.get("status") in ("error", "not_found"):
                 # 提示具体的术语或百科问题，同时保留右侧译文。
@@ -100,7 +104,7 @@ with st.expander("维基百科搜索结果 👀", expanded=False):
     # 已翻译但没有提取出专业名词时，显示明确说明。
     elif st.session_state.translation_result["translation"]:
         # 避免用户误以为注解区域未加载。
-        st.caption("本次没有提取到需要注解的专业名词。")
+        st.caption("本次没有可展示的百科术语注解；未匹配到对应词条或暂时未能核验的候选已过滤。")
     # 未翻译时显示折叠区域的用途。
     else:
         # 说明翻译完成后会自动查询专业名词。
@@ -177,5 +181,5 @@ if submit:
         # 翻译结束后移除翻书动画和等待文字。
         loading_placeholder.empty()
 
-# 在 demo1 环境中，从这三个文件所在文件夹启动页面。
+# 在对应环境中，从这三个文件所在文件夹启动页面。
 # streamlit run main.py

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌐 Auto Translator
+# 🌐 auto-translator
 
 ### 读懂原文，也读懂专业名词。
 
@@ -18,7 +18,7 @@
 
 ## 项目介绍
 
-**Auto Translator** 是一个基于 **Streamlit + LangChain** 的轻量翻译应用，适合阅读外文资料、论文摘要和技术说明。
+**auto-translator** 是一个基于 **Streamlit + LangChain** 的轻量翻译应用，适合阅读外文资料、论文摘要和技术说明。
 
 在左侧粘贴原文，在右侧查看简体中文译文；遇到专业名词，还可以展开下方的百科注解，查看原文术语、对应词条和来源链接。
 
@@ -77,19 +77,24 @@ cd auto-translator
 
 也可以在仓库首页选择 **Code → Download ZIP**，解压后进入项目文件夹。
 
-### 2. 安装依赖
+### 2. 自行配置运行环境
 
-使用你准备运行项目的 Python 环境安装依赖。已有 `demo1` 环境时，可以执行：
+运行本项目之前，请自行安装 Python 和虚拟环境管理工具，并为项目创建独立环境。下面以 **Conda** 为例，创建名为 `auto-translator` 的环境：
 
 ```bash
-# 激活已有的 Conda 环境。
-conda activate demo1
+# 创建独立的项目环境，并安装 Python 3.12。
+conda create -n auto-translator python=3.12 -y
 
-# 通过当前环境的 Python 安装项目依赖。
+# 激活刚创建的环境。
+conda activate auto-translator
+
+# 在当前环境中安装项目依赖。
 python -m pip install -r requirements.txt
 ```
 
-如果使用其他虚拟环境，激活对应环境后执行相同的依赖安装命令即可，不要求环境必须叫 `demo1`。
+`auto-translator` 是示例环境名称，可以按需自定义；创建和激活时请使用同一个名称。也可以使用 `venv` 等其他虚拟环境工具，配置好环境后再安装 `requirements.txt` 中的依赖。
+
+如果已经创建了该环境，再次运行项目时只需执行 `conda activate auto-translator`，无需重复创建。
 
 ### 3. 启动页面
 
